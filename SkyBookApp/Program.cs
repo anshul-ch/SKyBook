@@ -1,7 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<WebApplication1.Services.FlightService>();
+builder.Services.AddSingleton<SkyBookApp.Services.FlightService>();
 
 var app = builder.Build();
 

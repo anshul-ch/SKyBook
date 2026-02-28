@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Models;
-using WebApplication1.Services;
+using SkyBookApp.Models;
+using SkyBookApp.Services;
 
-namespace WebApplication1.Controllers
+namespace SkyBookApp.Controllers
 {
     public class FlightController : Controller
     {

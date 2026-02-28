@@ -1,6 +1,6 @@
-using WebApplication1.Models;
+using SkyBookApp.Models;
 
-namespace WebApplication1.Services
+namespace SkyBookApp.Services
 {
     public class FlightService
     {

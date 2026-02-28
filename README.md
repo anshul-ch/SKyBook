@@ -1,4 +1,4 @@
-# SkyBook - Flight Search Engine
+# SkyBookApp - Flight Search Engine
 
 A simple flight search web app built with **ASP.NET Core MVC (.NET 10)** for a college assignment.
 
@@ -17,7 +17,7 @@ A simple flight search web app built with **ASP.NET Core MVC (.NET 10)** for a c
 
 ## How to run
 
-1. Open the solution in **Visual Studio 2022**
+1. Open `SkyBookApp.slnx` in **Visual Studio 2022**
 2. Press **F5** to run
 3. Go to the **Flights** tab and search
 
@@ -30,10 +30,10 @@ A simple flight search web app built with **ASP.NET Core MVC (.NET 10)** for a c
 
 ## Project structure
 
-- `Models/` – Flight, SearchCriteria, FlightSearchResult
-- `Services/` – FlightService (handles search, sort, sample data)
-- `Controllers/` – FlightController, HomeController
-- `Views/Flight/` – Search, SearchResults, Details, Index pages
+- `SkyBookApp/Models/` – Flight, SearchCriteria, FlightSearchResult
+- `SkyBookApp/Services/` – FlightService (handles search, sort, sample data)
+- `SkyBookApp/Controllers/` – FlightController, HomeController
+- `SkyBookApp/Views/Flight/` – Search, SearchResults, Details, Index pages
 
 ## Note
 

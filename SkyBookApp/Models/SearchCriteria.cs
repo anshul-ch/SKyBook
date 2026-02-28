@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication1.Models
+namespace SkyBookApp.Models
 {
     public class SearchCriteria
     {
