@@ -1,0 +1,197 @@
+@model WebApplication1.Models.Flight
+@{
+    ViewData["Title"] = $"{Model.FlightNumber} – Flight Details";
+}
+
+<style>
+    .detail-banner {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+        color: #fff;
+        padding: 36px 0;
+        margin: -24px -12px 32px;
+    }
+    .detail-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+    .detail-card .card-body { padding: 32px; }
+    .info-block {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+    }
+    .info-block h6 {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        color: #2563eb;
+        font-weight: 700;
+        margin-bottom: 14px;
+    }
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 14px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row .label { color: #64748b; }
+    .info-row .value { color: #0f172a; font-weight: 600; }
+    .pricing-block {
+        background: linear-gradient(135deg, #1e3a5f, #0f172a);
+        color: #fff;
+        border-radius: 10px;
+        padding: 28px;
+        text-align: center;
+    }
+    .pricing-block .amount { font-size: 40px; font-weight: 700; }
+    .includes-list { list-style: none; padding: 0; margin: 0; }
+    .includes-list li {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    .includes-list li:last-child { border-bottom: none; }
+    .includes-list i { color: #16a34a; }
+</style>
+
+<div class="detail-banner">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center gap-3">
+            <span class="badge bg-white text-dark px-3 py-2 rounded-pill fw-semibold">
+                <i class="bi bi-airplane me-1"></i> @Model.FlightNumber
+            </span>
+            <span class="fw-semibold">@Model.AirlineName</span>
+            <span class="opacity-75 ms-auto fs-4 fw-bold">
+                @Model.DepartureCity <i class="bi bi-arrow-right mx-2"></i> @Model.ArrivalCity
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card detail-card">
+                <div class="card-body">
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="info-block h-100">
+                                <h6><i class="bi bi-box-arrow-up-right me-1"></i> Departure</h6>
+                                <div class="info-row">
+                                    <span class="label">City</span>
+                                    <span class="value">@Model.DepartureCity</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Date</span>
+                                    <span class="value">@Model.DepartureDateTime.ToString("ddd, dd MMM yyyy")</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Time</span>
+                                    <span class="value">@Model.DepartureDateTime.ToString("hh:mm tt")</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-block h-100">
+                                <h6><i class="bi bi-box-arrow-in-down-right me-1"></i> Arrival</h6>
+                                <div class="info-row">
+                                    <span class="label">City</span>
+                                    <span class="value">@Model.ArrivalCity</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Date</span>
+                                    <span class="value">@Model.ArrivalDateTime.ToString("ddd, dd MMM yyyy")</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Time</span>
+                                    <span class="value">@Model.ArrivalDateTime.ToString("hh:mm tt")</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-block mb-4">
+                        <h6><i class="bi bi-info-circle me-1"></i> Flight Details</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-row">
+                                    <span class="label">Flight</span>
+                                    <span class="value">@Model.FlightNumber</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Airline</span>
+                                    <span class="value">@Model.AirlineName</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Class</span>
+                                    <span class="value">@Model.ClassType</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-row">
+                                    <span class="label">Duration</span>
+                                    <span class="value">@Model.DurationInHours.ToString("0.0") hrs</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Type</span>
+                                    <span class="value">Direct</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Seats Left</span>
+                                    @if (Model.AvailableSeats < 10)
+                                    {
+                                        <span class="value text-danger">@Model.AvailableSeats only!</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="value text-success">@Model.AvailableSeats</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-7">
+                            <div class="info-block h-100">
+                                <h6><i class="bi bi-check-circle me-1"></i> Includes</h6>
+                                <ul class="includes-list">
+                                    <li><i class="bi bi-check-circle-fill"></i> Cabin baggage – 7 kg</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Check-in baggage – 15 kg</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Complimentary meals</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Free cancellation within 24 hrs</li>
+                                    <li><i class="bi bi-check-circle-fill"></i> Seat selection available</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="pricing-block h-100 d-flex flex-column justify-content-center">
+                                <small class="opacity-75">Price per passenger</small>
+                                <div class="amount my-2">₹@Model.Price.ToString("N0")</div>
+                                <span class="badge bg-white bg-opacity-25 mb-3 mx-auto px-3 py-2">
+                                    @Model.AvailableSeats seats available
+                                </span>
+                                <button class="btn btn-light fw-semibold" disabled>
+                                    <i class="bi bi-lock me-1"></i> Booking Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a asp-action="Search" class="btn btn-outline-secondary px-4">
+                            <i class="bi bi-arrow-left me-1"></i> Back to Search
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

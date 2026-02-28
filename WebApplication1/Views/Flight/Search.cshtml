@@ -1,0 +1,161 @@
+@model WebApplication1.Models.SearchCriteria
+@{
+    ViewData["Title"] = "Search Flights";
+}
+
+<style>
+    .search-banner {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+        color: #fff;
+        padding: 48px 0 72px;
+        margin: -24px -12px 0;
+    }
+    .search-panel {
+        margin-top: -48px;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,.12);
+        border: none;
+    }
+    .search-panel .card-body { padding: 36px; }
+    .form-label { font-weight: 600; font-size: 13px; color: #334155; }
+    .form-control, .form-select {
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 10px 14px;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+    .class-selector { display: flex; gap: 10px; flex-wrap: wrap; }
+    .class-selector label {
+        flex: 1;
+        min-width: 120px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: .2s;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .class-selector label:hover { border-color: #93c5fd; background: #f0f9ff; }
+    .class-selector input:checked + span { color: #1d4ed8; }
+    .class-selector label:has(input:checked) {
+        border-color: #2563eb;
+        background: #eff6ff;
+    }
+    .class-selector input[type="radio"] { accent-color: #2563eb; }
+    .btn-search {
+        background: #2563eb;
+        border: none;
+        padding: 12px 40px;
+        font-weight: 600;
+        border-radius: 8px;
+    }
+    .btn-search:hover { background: #1d4ed8; }
+</style>
+
+<div class="search-banner">
+    <div class="container text-center">
+        <h1 class="fw-bold mb-2"><i class="bi bi-airplane"></i> Search Flights</h1>
+        <p class="opacity-75 mb-0">Find the best deals on domestic flights</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card search-panel">
+                <div class="card-body">
+                    <form asp-action="SearchResults" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="DepartureCity" class="form-label">
+                                    <i class="bi bi-geo-alt text-primary"></i> From
+                                </label>
+                                <select asp-for="DepartureCity" class="form-select" required>
+                                    <option value="">Select departure city</option>
+                                    @foreach (var city in (List<string>)ViewBag.Cities)
+                                    {
+                                        <option value="@city">@city</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="DepartureCity" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="ArrivalCity" class="form-label">
+                                    <i class="bi bi-geo text-primary"></i> To
+                                </label>
+                                <select asp-for="ArrivalCity" class="form-select" required>
+                                    <option value="">Select arrival city</option>
+                                    @foreach (var city in (List<string>)ViewBag.Cities)
+                                    {
+                                        <option value="@city">@city</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="ArrivalCity" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="TravelDate" class="form-label">
+                                    <i class="bi bi-calendar3 text-primary"></i> Travel Date
+                                </label>
+                                <input asp-for="TravelDate" type="date" class="form-control" required />
+                                <span asp-validation-for="TravelDate" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="NumberOfPassengers" class="form-label">
+                                    <i class="bi bi-people text-primary"></i> Passengers
+                                </label>
+                                <input asp-for="NumberOfPassengers" type="number" min="1" max="10" class="form-control" required />
+                                <span asp-validation-for="NumberOfPassengers" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label"><i class="bi bi-suitcase text-primary"></i> Class</label>
+                                <div class="class-selector">
+                                    <label>
+                                        <input type="radio" name="ClassType" value="All"
+                                               @(Model.ClassType == "All" ? "checked" : "") />
+                                        <span>All Classes</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="ClassType" value="Economy"
+                                               @(Model.ClassType == "Economy" ? "checked" : "") />
+                                        <span>Economy</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="ClassType" value="Business"
+                                               @(Model.ClassType == "Business" ? "checked" : "") />
+                                        <span>Business</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="ClassType" value="First Class"
+                                               @(Model.ClassType == "First Class" ? "checked" : "") />
+                                        <span>First Class</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-search">
+                                <i class="bi bi-search me-1"></i> Search Flights
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

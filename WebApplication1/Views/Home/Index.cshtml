@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center py-5">
+    <h1 class="display-5 fw-bold">Welcome to SkyBook</h1>
+    <p class="lead text-muted">Your one-stop destination for finding domestic flights</p>
+    <div class="mt-4 d-flex gap-2 justify-content-center">
+        <a asp-controller="Flight" asp-action="Search" class="btn btn-primary btn-lg">
+            <i class="bi bi-search me-1"></i> Search Flights
+        </a>
+        <a asp-controller="Flight" asp-action="Index" class="btn btn-outline-secondary btn-lg">
+            <i class="bi bi-airplane me-1"></i> Browse Flights
+        </a>
+    </div>
+</div>

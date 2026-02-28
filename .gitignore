@@ -1,0 +1,32 @@
+## Build output
+bin/
+obj/
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Visual Studio
+.vs/
+*.csproj.user
+launchSettings.json
+
+## NuGet
+**/packages/
+*.nupkg
+
+## OS files
+Thumbs.db
+.DS_Store
+
+## Assignment docs - do not push
+*.docx
+*.doc
+*.pdf
+
+## Secrets and config overrides
+appsettings.Development.json
+secrets.json
