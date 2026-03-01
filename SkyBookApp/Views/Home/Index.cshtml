@@ -2,15 +2,85 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center py-5">
-    <h1 class="display-5 fw-bold">Welcome to SkyBook</h1>
-    <p class="lead text-muted">Your one-stop destination for finding domestic flights</p>
-    <div class="mt-4 d-flex gap-2 justify-content-center">
-        <a asp-controller="Flight" asp-action="Search" class="btn btn-primary btn-lg">
-            <i class="bi bi-search me-1"></i> Search Flights
-        </a>
-        <a asp-controller="Flight" asp-action="Index" class="btn btn-outline-secondary btn-lg">
-            <i class="bi bi-airplane me-1"></i> Browse Flights
-        </a>
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-3 fw-bold mb-4">
+                    Discover Your Next 
+                    <span class="text-primary">Adventure</span>
+                </h1>
+                <p class="lead text-muted mb-5">
+                    Book flights to amazing destinations with ease. Find the best deals on domestic flights and start your journey today.
+                </p>
+                <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                    <a asp-controller="Flight" asp-action="Search" class="btn btn-primary btn-lg px-4 py-3 shadow-sm">
+                        <i class="bi bi-search me-2"></i>Search Flights
+                    </a>
+                    <a asp-controller="Flight" asp-action="Index" class="btn btn-outline-primary btn-lg px-4 py-3">
+                        <i class="bi bi-airplane me-2"></i>Browse All
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="hero-image-container">
+                    <i class="bi bi-airplane-engines-fill hero-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Why Choose SkyBook?</h2>
+            <p class="text-muted">Experience seamless flight booking with our amazing features</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Fast Booking</h4>
+                    <p class="text-muted">Quick and easy flight search with instant results. Book your tickets in just a few clicks.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-tag-fill"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Best Prices</h4>
+                    <p class="text-muted">Get competitive prices on all domestic flights. We guarantee the best deals available.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Secure & Safe</h4>
+                    <p class="text-muted">Your data is protected with industry-standard security measures and encryption.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="fw-bold mb-2">Ready to start your journey?</h3>
+                <p class="text-muted mb-0">Join thousands of travelers who trust SkyBook for their flight bookings.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <a asp-controller="Account" asp-action="Signup" class="btn btn-light btn-lg px-5">
+                    Get Started <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
